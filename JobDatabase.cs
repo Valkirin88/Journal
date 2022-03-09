@@ -9,92 +9,95 @@ using System.Windows.Documents;
 using System.Xml.Serialization;
 using XmlSerializer= System.Xml.Serialization.XmlSerializer;
 
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+
+using System.Windows.Forms;
+
+
 
 namespace Journal
 {
     public class JobDatabase
     {
-        
+
 
         //Имя работника
-        public string worker { get; set; }
-        
-       
+        public string worker;
+
+
         //Цех
-        public string plant { get; set; }
+        public string plant;
 
         //Дата выполнения работы
-       
+
         //public DateTime date { get; set; }
 
         //Время выполнения работы
-      
-       // public DateTime time;
+
+        // public DateTime time;
 
         //Описание работы
-        public string descriptionJob { get; set; }
+        public string descriptionJob;
 
-       
-        public string equipment { get; set; }
-      
 
-        public int index { get; set; }  // порядковый номер работы
+        public string equipment;
+
+
+        public int index;  // порядковый номер работы
 
 
         public static List<JobDatabase> list = new List<JobDatabase>();
 
         public static void SaveJobs(JobDatabase job)
         {
+            list.Add(job);
 
-            if (list.Count > 0)
-            {
+           
+            //JobDatabase lastJob = lastJobList.Last();
 
-                
-                List<JobDatabase> listTemp = LoadJobs();
-                JobDatabase jobtemp = listTemp.Last();
+            //if (lastJobList.Count > 0)
+            //{
 
-                job.index = jobtemp.index + 1;
-                list.Clear();
-                listTemp.Clear();
 
-                list.Add(job);
-            }
-            else
-            { job.index = 0;
-              list.Add(job);
-            }
+
+            //    if (job != lastJob)
+            //    { list.Add(job); }
+            //    else if (job == lastJob)
+            //    { MessageBox.Show("Попытка сохранить одну работу дважды", "", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+
+            //}
+            //else
+            //{
+            //    list.Add(job);
+            //}
 
             var xmlSerializer = new XmlSerializer(typeof(List<JobDatabase>));
             FileStream filestream = new FileStream("C:\\Users\\User\\Desktop\\Всякое\\Journal", FileMode.Append, FileAccess.Write);
-            
 
             xmlSerializer.Serialize(filestream, list);
-            using (StreamWriter streamWriter = new StreamWriter(filestream))
-            {
-                streamWriter.Write("\n");
-            }
+
             filestream.Close();
-           
+
+            list.Clear();
+            List<JobDatabase> lastJobList = LoadJobs();
         }
 
         public static List<JobDatabase> LoadJobs()
         {
-                        
-                var xmlSerializer = new XmlSerializer(typeof(List<JobDatabase>));
-                FileStream filestream = new FileStream("C:\\Users\\User\\Desktop\\Всякое\\Journal", FileMode.Open, FileAccess.Read);
-                list = (List<JobDatabase>)xmlSerializer.Deserialize(filestream);
-                filestream.Close();
-                return list;
-                
-            
+
+            var xmlSerializer = new XmlSerializer(typeof(List<JobDatabase>));
+            FileStream filestream = new FileStream("C:\\Users\\User\\Desktop\\Всякое\\Journal", FileMode.Open, FileAccess.Read);
+            List<JobDatabase> lastJob = xmlSerializer.Deserialize(filestream) as List<JobDatabase>;
+            filestream.Close();
+            return lastJob;
+
+
         }
 
-        
 
 
-
-
-
-        
     }
-}
+            
+    }

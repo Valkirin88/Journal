@@ -52,6 +52,7 @@ namespace Journal
         {
             CheckSaveButton();
             
+
             JobDatabase job = new JobDatabase();
            
             job.descriptionJob = descriptionBox.Text;
@@ -95,9 +96,6 @@ namespace Journal
         private void newLineDatabase()
         {
             
-
-
-
         }
 
         private void DebugText_Click(object sender, EventArgs e)
@@ -108,6 +106,11 @@ namespace Journal
         private void plantBox_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        public void ShowError()
+        {
+            MessageBox.Show("Попытка сохранить одну работу дважды", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
 }
