@@ -17,7 +17,7 @@ namespace Journal
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
-	// 12 часовой рабочий день
+	// 12 часовой рабочий день 7 дней в неделю
         }
     }
 }
