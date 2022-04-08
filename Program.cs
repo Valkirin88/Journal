@@ -17,13 +17,9 @@ namespace Journal
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
-<<<<<<< Updated upstream
-	// 12 часовой рабочий день
-=======
-	// 12 часовой рабочий день 7 дней в неделю
-	// новая ветка ISO
+
     // изменение 3 ANV
->>>>>>> Stashed changes
+
         }
     }
 }
