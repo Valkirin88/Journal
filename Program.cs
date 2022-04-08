@@ -22,6 +22,11 @@ namespace Journal
 =======
 	// 12 часовой рабочий день 7 дней в неделю
 	// новая ветка ISO
+<<<<<<< Updated upstream
+=======
+        // изменение 3 ANV
+	// все должно быть ровно
+>>>>>>> Stashed changes
 >>>>>>> Stashed changes
         }
     }
