@@ -61,12 +61,7 @@ namespace Journal
             
             // job.time = dateTimePicker1.Value;
             
-            JobDatabase.SaveJobs(job);
-            
-           
-
-
-
+           job.SaveJobs(job);
         }
 
         private void workerBox_SelectedIndexChanged(object sender, EventArgs e)
