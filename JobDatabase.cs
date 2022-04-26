@@ -18,20 +18,17 @@ namespace Journal
         public int index;  // порядковый номер работы
         public static List<JobDatabase> list = new List<JobDatabase>();
         public List<JobDatabase> lastJob;
+        
 
         public void SaveJobs(JobDatabase job)
         {
             list.Add(job);
 
             var xmlSerializer = new XmlSerializer(typeof(List<JobDatabase>));
-            FileStream filestream = new FileStream("C:\\Users\\User\\Desktop\\Rubbish\\Journal", FileMode.Append, FileAccess.Write);
+
+            FileStream filestream = new FileStream("C:\\Users\\User\\Desktop\\Rubbish\\Journal", FileMode.Append, FileAccess.Write); 
             xmlSerializer.Serialize(filestream, list);
             filestream.Close();
-
-            //XDocument xDoc = new XDocument();
-            //xDoc.LoadXml("C:\\Users\\User\\Desktop\\Rubbish\\Journal");
-            
-            //xDoc.Add();
 
             list.Clear();
             List<JobDatabase> lastJobList = LoadJobs();
