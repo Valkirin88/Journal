@@ -1,11 +1,8 @@
-﻿
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Xml.Linq;
 using XmlSerializer= System.Xml.Serialization.XmlSerializer;
 using System.Xml;
-
-
 
 namespace Journal
 {
@@ -26,11 +23,11 @@ namespace Journal
 
             var xmlSerializer = new XmlSerializer(typeof(List<JobDatabase>));
 
-            FileStream filestream = new FileStream("C:\\Users\\User\\Desktop\\Rubbish\\Journal", FileMode.Append, FileAccess.Write); 
+            FileStream filestream = new FileStream("C:\\Users\\User\\Desktop\\Rubbish\\Journal", FileMode.OpenOrCreate, FileAccess.Write); 
             xmlSerializer.Serialize(filestream, list);
             filestream.Close();
 
-            list.Clear();
+            //list.Clear();
             List<JobDatabase> lastJobList = LoadJobs();
         }
 
